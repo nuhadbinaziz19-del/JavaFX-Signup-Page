@@ -46,13 +46,7 @@ public class SignupPage extends Application {
         Button signupBtn = new Button("SIGN UP");
         signupBtn.setPrefWidth(350);
         signupBtn.setPrefHeight(45);
-        signupBtn.setStyle(
-                "-fx-background-color: linear-gradient(to right, #8E2DE2, #C56CF0);" +
-                "-fx-text-fill: white;" +
-                "-fx-font-size: 16px;" +
-                "-fx-font-weight: bold;" +
-                "-fx-background-radius: 8;"
-        );
+        signupBtn.setStyle("-fx-background-color: linear-gradient(to right, #8E2DE2, #C56CF0);"+"-fx-text-fill: white;"+"-fx-font-size: 16px;"+"-fx-font-weight: bold;"+"-fx-background-radius: 8;");
         Label loginText = new Label("Already have an account?");
         Hyperlink loginLink = new Hyperlink("Login");
         HBox loginBox = new HBox(5, loginText, loginLink);
@@ -64,88 +58,40 @@ public class SignupPage extends Application {
         Label f2 = new Label("• Password and confirm password must match");
         Label f3 = new Label("• Validation for empty fields");
         Label f4 = new Label("• Navigate back to Login page");
-
         featuresBox.getChildren().addAll(featureTitle, f1, f2, f3, f4);
-
         featuresBox.setPadding(new Insets(15));
-        featuresBox.setStyle(
-                "-fx-border-color: #dddddd;" +
-                "-fx-border-radius: 10;" +
-                "-fx-background-radius: 10;"
-        );
-
-        // ===== MAIN LAYOUT =====
+        featuresBox.setStyle("-fx-border-color: #dddddd;"+"-fx-border-radius: 10;"+"-fx-background-radius: 10;");
         VBox root = new VBox(12);
-
-        root.getChildren().addAll(
-                icon,
-                title,
-                subtitle,
-
-                fullNameLabel,
-                fullNameField,
-
-                emailLabel,
-                emailField,
-
-                passLabel,
-                passwordField,
-
-                confirmLabel,
-                confirmField,
-
-                signupBtn,
-                loginBox,
-                featuresBox
-        );
-
+        root.getChildren().addAll(icon,title,subtitle,fullNameLabel,fullNameField,emailLabel,emailField,passLabel,passwordField,confirmLabel,confirmField,signupBtn,loginBox,featuresBox);
         root.setPadding(new Insets(25));
         root.setAlignment(Pos.TOP_CENTER);
-
-        // ===== BUTTON ACTION =====
         signupBtn.setOnAction(e -> {
-
             String name = fullNameField.getText();
             String email = emailField.getText();
             String pass = passwordField.getText();
             String confirm = confirmField.getText();
-
             if(name.isEmpty() || email.isEmpty() || pass.isEmpty() || confirm.isEmpty()) {
-
                 showAlert("Error", "Please fill all fields!");
-
-            } else if(!pass.equals(confirm)) {
-
-                showAlert("Error", "Passwords do not match!");
-
-            } else {
-
-                showAlert("Success", "Account Created Successfully!");
-
             }
-
+            else if(!pass.equals(confirm)) {
+                showAlert("Error", "Passwords do not match!");
+            } 
+            else {
+                showAlert("Success", "Account Created Successfully!");
+            }
         });
-
-        // ===== SCENE =====
-        Scene scene = new Scene(root, 420, 700);
-
+      Scene scene = new Scene(root, 420, 700);
         stage.setTitle("Signup");
         stage.setScene(scene);
         stage.show();
     }
-
-    // ===== ALERT METHOD =====
     private void showAlert(String title, String message) {
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
-
         alert.showAndWait();
     }
-
     public static void main(String[] args) {
         launch();
     }
